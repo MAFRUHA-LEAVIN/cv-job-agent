@@ -25,11 +25,16 @@ if st.button("Analyze"):
     if not cv_text or not job_description:
         st.warning("Please paste or upload your CV and paste the job description.")
     else:
-        with st.spinner("Analyzing your CV..."):
-            result = run_cv_agent(cv_text, job_description)
+        try:
+            with st.spinner("Analyzing your CV..."):
+                result = run_cv_agent(cv_text, job_description)
 
-        st.subheader("Analysis Result")
-        st.write(result)
+            st.subheader("Analysis Result")
+            st.write(result)
 
-        saved_path = save_analysis_result(result)
-        st.success(f"Analysis saved to: {saved_path}")
+            saved_path = save_analysis_result(result)
+            st.success(f"Analysis saved to: {saved_path}")
+
+        except Exception as error:
+            st.error("Something went wrong while analyzing the CV.")
+            st.write(error)
