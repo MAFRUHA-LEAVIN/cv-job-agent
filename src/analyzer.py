@@ -1,28 +1,25 @@
+from src.ai_client import ask_ai
+
 def analyze_cv(cv_text, job_description):
-    return {
-        "match_score": "72%",
-        "missing_skills": [
-            "Python",
-            "API development",
-            "Cloud deployment"
-        ],
-        "keywords_to_add": [
-            "REST API",
-            "backend development",
-            "deployment",
-            "automation"
-        ],
-        "weak_areas": [
-            "Your CV does not clearly show measurable impact.",
-            "Some technical tools are missing or not visible enough."
-        ],
-        "rewritten_bullets": [
-            "Developed and maintained backend features using Python and REST APIs.",
-            "Improved application reliability by supporting testing, debugging, and deployment workflows."
-        ],
-        "checklist": [
-            "Add 3–5 keywords from the job description.",
-            "Rewrite at least 2 experience bullets.",
-            "Mention tools clearly under each project or job."
-        ]
-    }
+    prompt = f"""
+You are a CV improvement assistant.
+
+Compare the CV with the job description and give practical improvement suggestions.
+
+CV:
+{cv_text}
+
+Job description:
+{job_description}
+
+Return the answer in this format:
+
+Match score:
+Missing skills:
+Keywords to add:
+Weak areas:
+Suggested rewritten CV bullets:
+Final checklist:
+"""
+
+    return ask_ai(prompt)
