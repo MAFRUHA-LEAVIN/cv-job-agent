@@ -1,5 +1,5 @@
 import streamlit as st
-from src.analyzer import analyze_cv
+from src.cv_agent import run_cv_agent
 
 st.title("CV Job Match Agent")
 
@@ -13,7 +13,7 @@ if st.button("Analyze"):
         st.warning("Please paste both your CV and the job description.")
     else:
         with st.spinner("Analyzing your CV..."):
-            result = analyze_cv(cv_text, job_description)
+            result = run_cv_agent(cv_text, job_description)
 
         st.subheader("Analysis Result")
         st.write(result)
