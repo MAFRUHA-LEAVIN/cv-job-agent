@@ -1,4 +1,4 @@
-from src.ai_client import ask_ai
+from src.ollama_client import ask_ai
 
 def analyze_cv(cv_text, job_description):
     prompt = f"""
